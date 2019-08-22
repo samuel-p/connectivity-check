@@ -1,0 +1,46 @@
+<html>
+<head>
+    <title>connectivity-check</title>
+</head>
+
+<body>
+<h1>connectivity-check</h1>
+
+<hr>
+
+<h2>Setup Android</h2>
+
+If you want to use <code>http</code>:
+<pre># settings put global captive_portal_use_https 0</pre>
+<pre># settings put global captive_portal_http_url "http://connectivitycheck.sp-codes.de/generate204"</pre>
+
+If you want to use <code>https</code>:
+<pre># settings put global captive_portal_use_https 1</pre>
+<pre># settings put global captive_portal_https_url "https://connectivitycheck.sp-codes.de/generate204"</pre>
+
+<p>Maybe you have to reboot your phone after updating the settings. For more information see <a href="https://android.stackexchange.com/a/186995/288049">this</a>.</p>
+<p>If you are using AFWall+ you need to give access to [1000] Android-System and in some cases [10040] CaptivePortalLogin to make it work.</p>
+
+<hr>
+
+<h2>Setup Ubuntu</h2>
+
+Open <code>/etc/NetworkManager/NetworkManager.conf</code>:
+
+<pre># sudo nano /etc/NetworkManager/NetworkManager.conf</pre>
+
+Add the following lines (or change them to this):
+
+<pre>
+[connectivity]
+uri=https://connectivitycheck.sp-codes.de/generate204
+	</pre>
+
+Restart the network-manager:
+
+<pre># sudo service network-manager restart</pre>
+
+<p>For more information see <a href="https://askubuntu.com/q/1167177/920103">this</a>.</p>
+</body>
+
+</html>
