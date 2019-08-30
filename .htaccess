@@ -1,5 +1,7 @@
 RewriteEngine On
 
+Header always set "X-NetworkManager-Status" "online"
+
 RewriteCond "%{REQUEST_FILENAME}" "(generate)?_?204"
 RewriteRule "(generate)?_?204" / [R=204,L]
 
