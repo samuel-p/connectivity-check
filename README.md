@@ -85,7 +85,7 @@ sudo service network-manager restart
 
 For more information see [here](https://askubuntu.com/q/1167177/920103).
 
-## Firefox
+### Firefox
 
 Type [about:config](about:config) in the Firefox address bar and search for `captivedetect.canonicalURL` and `network.connectivity-service`. Set the URL values to `https://connectivitycheck.sp-codes.de/generate204`, the domain values to `connectivitycheck.sp-codes.de`. That's it.
 
