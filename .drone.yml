@@ -1,12 +1,65 @@
 kind: pipeline
-name: default
+type: docker
+name: linux-amd64
+
+platform:
+  os: linux
+  arch: amd64
 
 steps:
   - name: docker
     image: plugins/docker
     settings:
+      auto_tag: true
+      auto_tag_suffix: linux-amd64
       repo: samuelph/connectivity-check
       username:
         from_secret: USERNAME
       password:
         from_secret: PASSWORD
+
+---
+kind: pipeline
+type: docker
+name: linux-arm
+
+platform:
+  os: linux
+  arch: arm
+
+steps:
+  - name: docker
+    image: plugins/docker
+    settings:
+      auto_tag: true
+      auto_tag_suffix: linux-arm
+      repo: samuelph/connectivity-check
+      username:
+        from_secret: USERNAME
+      password:
+        from_secret: PASSWORD
+
+---
+kind: pipeline
+type: docker
+name: manifest
+
+steps:
+  - name: publish
+    image: plugins/manifest
+    settings:
+      auto_tag: true
+      ignore_missing: true
+      target: samuelph/connectivity-check
+      template: samuelph/connectivity-check:OS-ARCH
+      platforms:
+        - linux/amd64
+        - linux/arm
+      username:
+        from_secret: USERNAME
+      password:
+        from_secret: PASSWORD
+
+depends_on:
+  - linux-amd64
+  - linux-arm
