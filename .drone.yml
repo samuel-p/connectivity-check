@@ -18,6 +18,39 @@ steps:
       password:
         from_secret: PASSWORD
 
+trigger:
+  branch:
+    - master
+  event:
+    - push
+
+---
+kind: pipeline
+type: docker
+name: linux-arm64
+
+platform:
+  os: linux
+  arch: arm64
+
+steps:
+  - name: docker
+    image: plugins/docker
+    settings:
+      auto_tag: true
+      auto_tag_suffix: linux-arm64
+      repo: samuelph/connectivity-check
+      username:
+        from_secret: USERNAME
+      password:
+        from_secret: PASSWORD
+
+trigger:
+  branch:
+    - master
+  event:
+    - push
+
 ---
 kind: pipeline
 type: docker
@@ -39,10 +72,20 @@ steps:
       password:
         from_secret: PASSWORD
 
+trigger:
+  branch:
+    - master
+  event:
+    - push
+
 ---
 kind: pipeline
 type: docker
 name: manifest
+
+platform:
+  os: linux
+  arch: arm64
 
 steps:
   - name: publish
@@ -62,4 +105,11 @@ steps:
 
 depends_on:
   - linux-amd64
+  - linux-arm64
   - linux-arm
+
+trigger:
+  branch:
+    - master
+  event:
+    - push
