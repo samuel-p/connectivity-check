@@ -97,6 +97,7 @@ steps:
       template: samuelph/connectivity-check:OS-ARCH
       platforms:
         - linux/amd64
+        - linux/arm64
         - linux/arm
       username:
         from_secret: USERNAME
