@@ -85,6 +85,22 @@ sudo service network-manager restart
 
 For more information see [here](https://askubuntu.com/q/1167177/920103).
 
+
+## Fedora
+
+In Fedora, the file `/etc/NetworkManager/NetworkManager.conf` must be changed. Add or change the following lines:
+
+```
+[connectivity]
+uri=https://connectivitycheck.sp-codes.de/generate204
+```
+
+Restart the _NetworkManager_:
+
+```
+sudo service NetworkManager restart
+```
+
 ### Firefox
 
 Type [about:config](about:config) in the Firefox address bar and search for `captivedetect.canonicalURL` and `network.connectivity-service`. Set the URL values to `https://connectivitycheck.sp-codes.de/generate204`, the domain values to `connectivitycheck.sp-codes.de`. That's it.
