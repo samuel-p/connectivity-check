@@ -11,3 +11,18 @@ pipeline:
         - main
       event:
         - push
+  cr:
+    image: plugins/docker
+    secrets:
+      - source: CR_USERNAME
+        target: DOCKER_USERNAME
+      - source: CR_PASSWORD
+        target: DOCKER_PASSWORD
+    registry: cr.sp-codes.de
+    repo: connectivity-check
+    tags: latest
+    when:
+      branch:
+        - main
+      event:
+        - push
