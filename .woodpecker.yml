@@ -18,6 +18,7 @@ pipeline:
         target: DOCKER_USERNAME
       - source: CR_PASSWORD
         target: DOCKER_PASSWORD
+    registry: cr.sp-codes.de
     repo: cr.sp-codes.de/connectivity-check
     tags: latest
     when:
