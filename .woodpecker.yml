@@ -1,6 +1,9 @@
 pipeline:
   docker:
     image: plugins/docker
+    secrets:
+      - DOCKER_USERNAME
+      - DOCKER_PASSWORD
     repo: samuelph/connectivity-check
     tags: latest
     when:
